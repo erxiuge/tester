@@ -1,0 +1,21 @@
+<%= form_for @wedding, html: { class: 'form-horizontal' } do |wedding_form| -%>
+  <div class='form-group'>
+    <%= wedding_form.label :title, class: 'col-sm-2 control-label' -%>
+    <div class="col-sm-4">
+      <%= wedding_form.text_field :title, class: 'form-control' -%>
+    </div>
+    <div class='col-sm-offset-1 col-sm-2'>
+      <%= wedding_form.submit 'Save it', class: 'btn btn-primary' -%>
+    </div>
+  </div>
+  <hr>
+  <div class='gifts'>
+    <%= wedding_form.fields_for :gifts do |gift_fields| -%>
+      <%= render 'gift', gift_fields: gift_fields -%>
+    <% end %>
+  </div>
+  <hr>
+  <div class='form-group'>
+    <%= link_to_add_fields 'Add Gift', wedding_form, :gifts -%>
+  </div> 
+<% end %>

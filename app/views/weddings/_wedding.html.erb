@@ -1,0 +1,15 @@
+<tr>
+  <td><%= link_to wedding.id, wedding_path(wedding) %></td>
+  <td><%= wedding.title %></td>
+  <td><%= wedding.url %></td>
+  <td><%= wedding.gifts.count %></td>
+  <td>
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_wedding_path(wedding), :class => 'btn btn-default btn-xs' %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                wedding_path(wedding),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-xs btn-danger' %>
+  </td>
+</tr>
