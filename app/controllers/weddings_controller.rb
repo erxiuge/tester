@@ -3,7 +3,6 @@ class WeddingsController < ApplicationController
 
   def new
   	@wedding = Wedding.new
-  	3.times { @wedding.gifts.build }
   end
   
   def create
@@ -11,6 +10,9 @@ class WeddingsController < ApplicationController
   	if @wedding.save
        redirect_to edit_wedding_path(@wedding)
     end
+  end
+
+  def show
   end
 
   def index
@@ -23,8 +25,7 @@ class WeddingsController < ApplicationController
   end
   
   def update
-  	binding.pry
-    if @wedding.update(wedding_params) 
+    if @wedding.update(wedding_params)
     	redirect_to edit_wedding_path(@wedding)
     end
   end

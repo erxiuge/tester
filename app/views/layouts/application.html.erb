@@ -3,13 +3,12 @@
 <head>
   <title>Tester</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'nested_form' %>
+  <%= javascript_include_tag 'application', 'nested_form','data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!-- <h2><%= debug params %></h2><br \>
-<p><%= debug session.to_hash %></p> -->
+<h2><%= debug params %></h2><br \>
+<!-- <p><%= debug session.to_hash %></p> -->
 <%= yield %>
 
 </body>

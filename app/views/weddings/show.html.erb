@@ -1,21 +1,32 @@
-<%- model_class = Wedding -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
-
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @wedding.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
-  <dd><%= @wedding.url %></dd>
-</dl>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              weddings_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_wedding_path(@wedding), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              wedding_path(@wedding),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<% cache @wedding do %>
+  <p class='col-sm-offset-1'>Title : <%= @wedding.title %></p>
+  <hr>
+  <ul class='col-sm-offset-1'>
+  <% @wedding.gifts.each do |g| %>
+     <li><%= g.name %></li>
+  <% end %>
+  </ul>
+  <hr>
+  <ul id='comments' class='col-sm-offset-1'>
+  <% @wedding.comments.each do |c| %>
+     <%= render partial: c, locals: { comment: c }  %>
+  <% end %>
+  </ul>
+  <hr>
+<% end %>
+<%= form_for Comment.new(wedding: @wedding), 
+             remote: true,
+             html: { class: 'form-horizontal' } do |f| %>
+  <div class='form-group'>
+    <div class='col-sm-offset-1 col-sm-4'>
+      <%= f.hidden_field :wedding_id %>
+      <%= f.text_field :content, class: 'form-control' %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class='col-sm-offset-4 col-sm-2'>
+      <%= f.submit 'Comment it', class: 'btn btn-primary' %>
+    </div>
+  </div>
+    
+<% end %>

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   
   resources :weddings
+  resources :comments
   
-  root 'weddings#new'
+  root 'weddings#index'
 
   #devise_for :users
 end

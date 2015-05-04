@@ -4,6 +4,8 @@
   <td><%= wedding.url %></td>
   <td><%= wedding.gifts.count %></td>
   <td>
+    <%= link_to t('.show', :default => t("helpers.links.show")),
+                wedding_path(wedding), :class => 'btn btn-default btn-xs' %>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_wedding_path(wedding), :class => 'btn btn-default btn-xs' %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
